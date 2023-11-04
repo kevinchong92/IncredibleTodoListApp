@@ -29,12 +29,23 @@ function App() {
 
   const [tasks, setTasks] = useState(taskList);
 
+  const addTask = (taskText) => {
+    if (taskList.includes(taskText)) {
+      return alert('Task already exists!');
+    }
+    if (taskText === '') {
+      return alert('Task cannot be empty!');
+    }
+    setTasks([...tasks, taskText]);
+  };
+
   return (
     <SafeAreaView>
       <ToDoList tasks={tasks} />
-      <ToDoForm />
+      <ToDoForm addTask={addTask} />
     </SafeAreaView>
   );
 }
+
 
 export default App;
